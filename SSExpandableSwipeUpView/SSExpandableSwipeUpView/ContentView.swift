@@ -7,31 +7,11 @@
 
 import SwiftUI
 
-let collapsedGroupRowOffSet: CGFloat = 10
-let sectionTitleHight: CGFloat = 30
-let expandedSectionRowHightFactor: CGFloat = 1.1
-
-struct SectionContent: Identifiable {
-    let id: UUID = UUID()
-    let sectionTitle: String
-    var isSectionExpanded: Bool
-    var swipeViewContents: [SwipeViewContent]
-}
-
-struct SwipeViewContent: Identifiable {
-    let id: UUID = UUID()
-    let appImageName: String
-    let title: String
-    var subtitle: String
-}
-
 struct ContentView: View {
-
+    @StateObject var viewModel = SectionContentsViewModel()
+    
     var body: some View {
-            ContentListView()
-                .background(
-                    Image("wallpaper")
-                    .frame(maxWidth: UIScreen.main.bounds.width))
+        SSExpandableSwipeUpView(viewModel: viewModel, constants: CustomConstants())
     }
 }
 
