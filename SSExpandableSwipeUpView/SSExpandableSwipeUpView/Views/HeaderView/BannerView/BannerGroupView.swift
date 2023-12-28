@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BannerGroupView: View {
     @Binding var sectionContent: SectionContent
-    @EnvironmentObject var viewModel: SectionContentsViewModel
+    @StateObject var viewModel: SectionContentsViewModel
     @Binding var activeBanner: SwipeViewContent?
 
     var body: some View {
@@ -18,11 +18,6 @@ struct BannerGroupView: View {
                 expandedView
             } else {
                 collapsedView
-                    .onTapGesture {
-                        withAnimation {
-                            sectionContent.isSectionExpanded.toggle()
-                        }
-                    }
             }
         }
     }
@@ -39,7 +34,7 @@ struct BannerGroupView: View {
         ZStack(alignment: .top) {
             ForEach(sectionContent.swipeViewContents.indices, id: \.self) { index in
                 VStack {
-                    BannerViewRow(index: (sectionContent.swipeViewContents.count - 1) - index)
+                    BannerViewRow(index: index).allowsHitTesting(index == sectionContent.swipeViewContents.count - 1 ? true : false)
                         .zIndex(Double(index))
                         Spacer(minLength: CGFloat(index) * AppConstants.collapsedGroupRowOffset)
                 }
@@ -51,11 +46,12 @@ struct BannerGroupView: View {
         VStack {
             BannerView(
                 swipeViewContent: $sectionContent.swipeViewContents[index],
-                isSectionExpanded: $sectionContent.isSectionExpanded, activeBanner: $activeBanner, onDelete: { deletedSwipeViewContent in
+                isSectionExpanded: $sectionContent.isSectionExpanded,
+                onDelete: { deletedSwipeViewContent in
                     withAnimation {
                         handleBannerDeletion(deletedSwipeViewContent: deletedSwipeViewContent)
                     }
-                }, index: index
+                }, activeBanner: $activeBanner
             )
         }
     }
@@ -74,7 +70,7 @@ struct BannerGroupView_Previews: PreviewProvider {
     @State static var viewModel = SectionContentsViewModel()
 
     static var previews: some View {
-        BannerGroupView(sectionContent: $viewModel.sectionContents.first!, activeBanner: .constant(nil))
+        BannerGroupView(sectionContent: $viewModel.sectionContents.first!, viewModel: viewModel, activeBanner: .constant(nil))
             .padding()
             .background(Color.black)
     }

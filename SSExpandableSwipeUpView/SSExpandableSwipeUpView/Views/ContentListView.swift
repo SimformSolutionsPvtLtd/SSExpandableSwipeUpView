@@ -9,23 +9,23 @@ import SwiftUI
 
 // View combining Section's header and list of banners
 struct ContentListView: View {
-    @StateObject var viewModel: SectionContentsViewModel
-    var constants: CustomConstants
+    @EnvironmentObject var viewModel: SectionContentsViewModel
+    @Binding var activeBanner: SwipeViewContent?
 
     var body: some View {
         VStack {
             ForEach(viewModel.sectionContents) { sectionContent in
                 VStack {
                     // Section header view with title and Expand/Remove button
-                    SectionHeaderView(sectionContent: $viewModel.sectionContents[viewModel.getIndexOfSection(for: sectionContent)], viewModel: viewModel, constants: constants)
+                    SectionHeaderView(sectionContent: $viewModel.sectionContents[viewModel.getIndexOfSection(for: sectionContent)])
                     // Banner list view
-                    // Manages the expansion and collaps using index of content
-                    BannerGroupView(sectionContent: $viewModel.sectionContents[viewModel.getIndexOfSection(for: sectionContent)], constants: constants)
+                    // Manages the expansion and collapse using index of content
+                    BannerGroupView(sectionContent: $viewModel.sectionContents[viewModel.getIndexOfSection(for: sectionContent)], activeBanner: $activeBanner)
                         .animation(.easeIn, value: sectionContent.isSectionExpanded)
                 }
                 .onTapGesture {
                     withAnimation {
-                        // Toggles section expansion/collaps on tap of section
+                        // Toggles section expansion/collapse on tap of section
                         viewModel.toggleSectionExpansion(for: sectionContent)
                     }
                 }
@@ -38,7 +38,7 @@ struct ContentListView: View {
 
 struct ContentListView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentListView(viewModel: SectionContentsViewModel(), constants: CustomConstants())
+        ContentListView(activeBanner: .constant(nil))
             .background(Color("black"))
     }
 }

@@ -7,34 +7,12 @@
 
 import Foundation
 
-// Constants
-struct CustomConstants {
-    // Offset for banners while section is collapsed
-    var collapsedGroupRowOffset: CGFloat
-
-    // Line spacing between banners while section is expanded
-    var expandSectionLineSpacing: CGFloat
-
-    // Section title height
-    var sectionTitleHeight: CGFloat
-
-    // Corner radius for banners/Views
-    var bannerCornerRadius: CGFloat
-
-    // Opacity for banners/Views
-    var bannerOpacity: CGFloat
-
-    init(collapsedGroupRowOffset: CGFloat = 10,
-         expandSectionLineSpacing: CGFloat = 10,
-         sectionTitleHeight: CGFloat = 30,
-         bannerCornerRadius: CGFloat = 22,
-         bannerOpacity: CGFloat = 0.8) {
-        self.collapsedGroupRowOffset = collapsedGroupRowOffset
-        self.expandSectionLineSpacing = expandSectionLineSpacing
-        self.sectionTitleHeight = sectionTitleHeight
-        self.bannerCornerRadius = bannerCornerRadius
-        self.bannerOpacity = bannerOpacity
-    }
+enum AppConstants {
+    static let collapsedGroupRowOffset: CGFloat = 10
+    static let expandSectionLineSpacing: CGFloat = 10
+    static let sectionTitleHeight: CGFloat = 30
+    static let bannerCornerRadius: CGFloat = 22
+    static let bannerOpacity: CGFloat = 0.8
 }
 
 struct SectionContent: Identifiable {
@@ -44,36 +22,28 @@ struct SectionContent: Identifiable {
     var swipeViewContents: [SwipeViewContent]
 }
 
-struct SwipeViewContent: Identifiable {
+struct SwipeViewContent: Identifiable, Equatable {
     let id: UUID = UUID()
     let appImageName: String
     let title: String
     var subtitle: String
+    var createdDate: Date
 }
 
 class SectionContentsViewModel: ObservableObject {
 
-    @Published var sectionContents: [SectionContent] = [
-        SectionContent(sectionTitle: "Google Pay", isSectionExpanded: true, swipeViewContents: [
-            SwipeViewContent(appImageName: "googlePay", title: "Payment Received", subtitle: "Darshan, You have received $10M in your account!"),
-            SwipeViewContent(appImageName: "googlePay", title: "Payment Received", subtitle: "Darshan, You have received $5M in your account!")]),
-        SectionContent(sectionTitle: "WhatsApp", isSectionExpanded: false, swipeViewContents: [
-            SwipeViewContent(appImageName: "whatsapp", title: "Adam", subtitle: "Hello"),
-            SwipeViewContent(appImageName: "whatsapp", title: "Adam", subtitle: "How are you!"),
-            SwipeViewContent(appImageName: "whatsapp", title: "Adam", subtitle: "Let's have some fresh air!"),
-            SwipeViewContent(appImageName: "whatsapp", title: "Adam", subtitle: "Coming?"),
-            SwipeViewContent(appImageName: "whatsapp", title: "Adam", subtitle: "Coming?????")]),
+    @Published var sectionContents: [SectionContent] = []
 
-        SectionContent(sectionTitle: "Teams", isSectionExpanded: false, swipeViewContents: [
-            SwipeViewContent(appImageName: "teams", title: "Gotham Steve", subtitle: "Hey, Darshan"),
-            SwipeViewContent(appImageName: "teams", title: "Gotham Steve", subtitle: "What is the progress?"),
-            SwipeViewContent(appImageName: "teams", title: "Gotham Steve", subtitle: "Are you on timeline?"),
-            SwipeViewContent(appImageName: "teams", title: "Gotham Steve", subtitle: "Okay, great!")]),
+    func addSection(title: String, isExpanded: Bool, swipeViewContents: [SwipeViewContent]) {
+        let newSection = SectionContent(sectionTitle: title, isSectionExpanded: isExpanded, swipeViewContents: swipeViewContents.sorted(by: {$0.createdDate > $1.createdDate}))
+          sectionContents.append(newSection)
+      }
 
-        SectionContent(sectionTitle: "Twitter", isSectionExpanded: false, swipeViewContents: [
-            SwipeViewContent(appImageName: "twitter", title: "Hi Darshan,", subtitle: "You have 32 new replies on your recent tweet"),
-            SwipeViewContent(appImageName: "twitter", title: "New reply", subtitle: "Steve replied your tweet")])
-    ]
+    func addSwipeViewContent(toSection sectionTitle: String, swipeViewContent: SwipeViewContent) {
+            if let sectionIndex = sectionContents.firstIndex(where: { $0.sectionTitle == sectionTitle }) {
+                sectionContents[sectionIndex].swipeViewContents.insert(swipeViewContent, at: 0)
+            }
+        }
 
     // Returns the index of section in array using SectionContent id.
     func getIndexOfSection(for section: SectionContent) -> Int {

@@ -8,28 +8,42 @@
 import SwiftUI
 
 struct SSExpandableSwipeUpView: View {
-    @StateObject var viewModel: SectionContentsViewModel
-    var constants: CustomConstants
+    @State var viewModel: SectionContentsViewModel
+    @State var activeBanner: SwipeViewContent?
+    @State var backgroundWallpaper: Image?
 
     var body: some View {
-        ScrollView {
-            // Spacer for starting content from bottom
-            Spacer(minLength: UIScreen.main.bounds.height - 120)
-            // Content counter
-            ContentCountView(viewModel: viewModel, constants: constants)
-            // Show content list if content is not empty
-            if !$viewModel.sectionContents.isEmpty {
-                ContentListView(viewModel: viewModel, constants: constants)
-            }
-        }
-        // Background image as a wallpaper
-        .background(
-            Image("wallpaper")
-                .frame(maxWidth: UIScreen.main.bounds.width))
-        .scrollIndicators(.hidden)
+        ScrollViewReader { proxy in
+              ScrollView {
+                  VStack {
+                      // Spacer for starting content from bottom
+                      Spacer(minLength: UIScreen.main.bounds.height - 120)
+                      // Content counter
+                      ContentCountView()
+                          .environmentObject(viewModel)
+                      // Show content list if content is not empty
+                      if !viewModel.sectionContents.isEmpty {
+                          ContentListView(activeBanner: $activeBanner)
+                              .environmentObject(viewModel)
+                      }
+                  }
+                  .background(GeometryReader { geometry in
+                      Color.clear
+                          .onChange(of: geometry.frame(in: .global).minY) { newOffset in
+                              withAnimation {
+                                  activeBanner = nil
+                              }
+                          }
+                  })
+              }
+              .background(
+                   backgroundWallpaper
+                        .frame(maxWidth: UIScreen.main.bounds.width))
+              .scrollIndicators(.hidden)
+          }
     }
 }
 
 #Preview {
-    SSExpandableSwipeUpView(viewModel: SectionContentsViewModel(), constants: CustomConstants())
+    SSExpandableSwipeUpView(viewModel: SectionContentsViewModel())
 }
