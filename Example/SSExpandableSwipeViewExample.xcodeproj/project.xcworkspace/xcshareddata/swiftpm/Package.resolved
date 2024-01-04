@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "ssexpandableswipeupview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SimformSolutionsPvtLtd/SSExpandableSwipeUpView.git",
+      "state" : {
+        "branch" : "feature/SPM-Creation",
+        "revision" : "937f5d7af37326810cb91f40a1d347b6d539ecf0"
+      }
+    }
+  ],
+  "version" : 2
+}
