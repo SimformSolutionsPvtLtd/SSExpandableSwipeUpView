@@ -39,6 +39,6 @@ struct ContentListView: View {
 struct ContentListView_Previews: PreviewProvider {
     static var previews: some View {
         ContentListView(activeBanner: .constant(nil))
-            .background(Color("black"))
+            .background(Color("black", bundle: .module))
     }
 }

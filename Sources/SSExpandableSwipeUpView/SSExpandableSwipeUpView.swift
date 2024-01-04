@@ -7,12 +7,18 @@
 
 import SwiftUI
 
-struct SSExpandableSwipeUpView: View {
-    @State var viewModel: SectionContentsViewModel
+public struct SSExpandableSwipeUpView: View {
+    @State public var viewModel: SectionContentsViewModel
     @State var activeBanner: SwipeViewContent?
-    @State var backgroundWallpaper: Image?
+    @State public var backgroundWallpaper: Image?
 
-    var body: some View {
+    public init(viewModel: SectionContentsViewModel, activeBanner: SwipeViewContent? = nil, backgroundWallpaper: Image? = nil) {
+           self._viewModel = State(initialValue: viewModel)
+           self._activeBanner = State(initialValue: activeBanner)
+           self._backgroundWallpaper = State(initialValue: backgroundWallpaper)
+       }
+
+    public var body: some View {
         ScrollViewReader { proxy in
               ScrollView {
                   VStack {
