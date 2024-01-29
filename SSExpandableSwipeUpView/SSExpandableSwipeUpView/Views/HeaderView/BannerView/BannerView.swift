@@ -11,10 +11,8 @@ struct BannerView: View {
     @Binding var swipeViewContent: SwipeViewContent
     @Binding var isSectionExpanded: Bool
     @State var swipeButtonWidth: CGFloat = 0
-    @Binding var activeBanner: SwipeViewContent?
-    @State var isFullSwipe: Bool = false
     var onDelete: (SwipeViewContent) -> Void
-    let index: Int
+    @Binding var activeBanner: SwipeViewContent?
 
     var body: some View {
         // Zstack to show the banner while swipping outside of container
@@ -30,6 +28,7 @@ struct BannerView: View {
                     .blur(radius: 1, opaque: false)
                     .cornerRadius(AppConstants.bannerCornerRadius)
                     .shadow(color: .black.opacity(AppConstants.bannerOpacity), radius: 4)
+                    .frame(width: UIScreen.main.bounds.width - 20)
 
                 // Banner Content View
                 // Contains banner image, title and description
@@ -69,59 +68,50 @@ struct BannerView: View {
             // Swipe Action View
             HStack {
                 createRectangleWithOverlay(text: "Options") {
-                    // add action for options button
-                }
-                ZStack {
-                    createRectangleWithOverlay(text: "Remove") {
+                        // add action for options button
+                    }
+                createRectangleWithOverlay(text: "Remove") {
                         withAnimation {
                             onDelete(swipeViewContent)
                             swipeButtonWidth = 0
                         }
                     }
-                }
-                .frame(width: isFullSwipe ? max(-swipeButtonWidth - 10, 0) : nil)
+
             }
             .opacity(swipeButtonWidth < 0 ? 1.0 : 0.0)
             .animation(.easeInOut, value: swipeButtonWidth)
-            .frame(width: activeBanner == swipeViewContent ? max(-swipeButtonWidth - 10, 0) : 0)
+            .offset(x: 10)
+            .frame(width: activeBanner == swipeViewContent ? swipeButtonWidth > 0 ? 0 : -swipeButtonWidth : 0)
         }
 
         .gesture(
             DragGesture()
                 .onChanged { value in
-                    if (!isSectionExpanded && index == 0) || isSectionExpanded {
-                        let translation = value.translation.width
-                        if translation < 0 && abs(translation) > (UIScreen.main.bounds.width / 2) {
-                            // Full swipe action to the left
-                            withAnimation {
-                                isFullSwipe = true
-                                swipeButtonWidth = -UIScreen.main.bounds.width + 10
-                            }
+                    let translation = value.translation.width
+                    if translation < 0 && abs(translation) > (UIScreen.main.bounds.width / 2) {
+                        // Full swipe action to the left
+                        withAnimation {
+                            swipeButtonWidth = -UIScreen.main.bounds.width - 30
+                        }
 
-                        } else if abs(value.translation.width) > CGFloat(20) {
-                            // Partial swipe action
-                            withAnimation {
-                                swipeButtonWidth = value.translation.width > 0 ? 0 : -190
-                                activeBanner = swipeViewContent
-                                isFullSwipe = false
-                            }
-                        } else {
-                            // Reset to default position
-                            withAnimation {
-                                swipeButtonWidth = 0
-                                isFullSwipe = false
-                            }
+                    } else if abs(value.translation.width) > CGFloat(20) {
+                        // Partial swipe action
+                        withAnimation {
+                            swipeButtonWidth = value.translation.width > 0 ? 0 : -190
+                            activeBanner = swipeViewContent
+                        }
+                    } else {
+                        // Reset to default position
+                        withAnimation {
+                            swipeButtonWidth = 0
                         }
                     }
                 }
                 .onEnded({ value in
-                    if (!isSectionExpanded && index == 0) || isSectionExpanded {
-                        let translation = value.translation.width
-                        if translation < 0 && abs(translation) > (UIScreen.main.bounds.width / 2) {
-                            onDelete(swipeViewContent)
-                            swipeButtonWidth = 0
-                            isFullSwipe = false
-                        }
+                    let translation = value.translation.width
+                    if translation < 0 && abs(translation) > (UIScreen.main.bounds.width / 2) {
+                        onDelete(swipeViewContent)
+                        swipeButtonWidth = 0
                     }
                 })
         )
@@ -145,11 +135,11 @@ struct BannerView: View {
 
 struct BannerView_Previews: PreviewProvider {
     @State private static var swipeViewContent: SwipeViewContent =
-    SwipeViewContent(appImageName: "googlePay", title: "Section 1 - Notification 1", subtitle: "Content 1", createdDate: Date())
+            SwipeViewContent(appImageName: "googlePay", title: "Section 1 - Notification 1", subtitle: "Content 1")
     @State private static var isSectionExpanded = true
     static var previews: some View {
         VStack {
-            BannerView(swipeViewContent: $swipeViewContent, isSectionExpanded: $isSectionExpanded, activeBanner: .constant(nil), onDelete: {_ in }, index: 0)
+            BannerView(swipeViewContent: $swipeViewContent, isSectionExpanded: $isSectionExpanded, onDelete: {_ in }, activeBanner: .constant(nil))
                 .padding()
         }
     }

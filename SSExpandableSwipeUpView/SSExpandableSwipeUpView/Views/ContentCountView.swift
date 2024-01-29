@@ -11,8 +11,7 @@ import SwiftUI
 // Shows number of sections available in current list
 // While removing any section from the list, will update the count
 struct ContentCountView: View {
-    @StateObject var viewModel: SectionContentsViewModel
-    var constants: CustomConstants
+    @EnvironmentObject var viewModel: SectionContentsViewModel
 
     var body: some View {
         VStack {
@@ -21,11 +20,11 @@ struct ContentCountView: View {
                 .fontWeight(.bold)
         }
         .padding(10)
-        .background(Color("grayBackground").opacity(constants.bannerOpacity))
-        .cornerRadius(constants.bannerCornerRadius)
+        .background(Color("grayBackground").opacity(AppConstants.bannerOpacity))
+        .cornerRadius(AppConstants.bannerCornerRadius)
     }
 }
 
 #Preview {
-    ContentCountView(viewModel: SectionContentsViewModel(), constants: CustomConstants())
+    ContentCountView()
 }

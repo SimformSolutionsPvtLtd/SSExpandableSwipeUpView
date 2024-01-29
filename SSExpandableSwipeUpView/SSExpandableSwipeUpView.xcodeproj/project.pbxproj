@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4325B40F2B4FFB0D00AD543B /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4325B40D2B4FFB0D00AD543B /* BannerView.swift */; };
+		4325B4102B4FFB0D00AD543B /* BannerGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4325B40E2B4FFB0D00AD543B /* BannerGroupView.swift */; };
 		7D1740E32B2C254000EE9181 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1740E22B2C254000EE9181 /* SectionHeaderView.swift */; };
-		7D1740E52B2C25E500EE9181 /* BannerGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1740E42B2C25E500EE9181 /* BannerGroupView.swift */; };
 		7D1740E72B2C272000EE9181 /* SectionContentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1740E62B2C272000EE9181 /* SectionContentsViewModel.swift */; };
 		7D1740EE2B2C35DD00EE9181 /* ContentCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1740ED2B2C35DD00EE9181 /* ContentCountView.swift */; };
 		7D9FAB782B305F1A00C3EF5D /* SSExpandableSwipeUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9FAB772B305F1A00C3EF5D /* SSExpandableSwipeUpView.swift */; };
@@ -17,12 +18,12 @@
 		7DC824252B20843600C7AC09 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC824242B20843600C7AC09 /* ContentView.swift */; };
 		7DC824272B20843900C7AC09 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DC824262B20843900C7AC09 /* Assets.xcassets */; };
 		7DC8242A2B20843900C7AC09 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DC824292B20843900C7AC09 /* Preview Assets.xcassets */; };
-		7DC824312B20857100C7AC09 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC824302B20857100C7AC09 /* BannerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4325B40D2B4FFB0D00AD543B /* BannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
+		4325B40E2B4FFB0D00AD543B /* BannerGroupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerGroupView.swift; sourceTree = "<group>"; };
 		7D1740E22B2C254000EE9181 /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
-		7D1740E42B2C25E500EE9181 /* BannerGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerGroupView.swift; sourceTree = "<group>"; };
 		7D1740E62B2C272000EE9181 /* SectionContentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionContentsViewModel.swift; sourceTree = "<group>"; };
 		7D1740ED2B2C35DD00EE9181 /* ContentCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCountView.swift; sourceTree = "<group>"; };
 		7D9FAB772B305F1A00C3EF5D /* SSExpandableSwipeUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSExpandableSwipeUpView.swift; sourceTree = "<group>"; };
@@ -32,7 +33,6 @@
 		7DC824242B20843600C7AC09 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7DC824262B20843900C7AC09 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7DC824292B20843900C7AC09 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		7DC824302B20857100C7AC09 /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +46,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4325B40C2B4FFB0D00AD543B /* BannerView */ = {
+			isa = PBXGroup;
+			children = (
+				4325B40D2B4FFB0D00AD543B /* BannerView.swift */,
+				4325B40E2B4FFB0D00AD543B /* BannerGroupView.swift */,
+			);
+			path = BannerView;
+			sourceTree = "<group>";
+		};
 		7D1740E82B2C273A00EE9181 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -60,7 +69,7 @@
 				7D1740ED2B2C35DD00EE9181 /* ContentCountView.swift */,
 				7DAA229E2B21B04700FE5DF6 /* ContentListView.swift */,
 				7D1740EA2B2C27A300EE9181 /* HeaderView */,
-				7D1740EB2B2C27AC00EE9181 /* BannerView */,
+				4325B40C2B4FFB0D00AD543B /* BannerView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -71,15 +80,6 @@
 				7D1740E22B2C254000EE9181 /* SectionHeaderView.swift */,
 			);
 			path = HeaderView;
-			sourceTree = "<group>";
-		};
-		7D1740EB2B2C27AC00EE9181 /* BannerView */ = {
-			isa = PBXGroup;
-			children = (
-				7DC824302B20857100C7AC09 /* BannerView.swift */,
-				7D1740E42B2C25E500EE9181 /* BannerGroupView.swift */,
-			);
-			path = BannerView;
 			sourceTree = "<group>";
 		};
 		7DC824162B20843600C7AC09 = {
@@ -190,15 +190,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4325B40F2B4FFB0D00AD543B /* BannerView.swift in Sources */,
 				7D1740EE2B2C35DD00EE9181 /* ContentCountView.swift in Sources */,
-				7D1740E52B2C25E500EE9181 /* BannerGroupView.swift in Sources */,
 				7DC824252B20843600C7AC09 /* ContentView.swift in Sources */,
 				7D9FAB782B305F1A00C3EF5D /* SSExpandableSwipeUpView.swift in Sources */,
+				4325B4102B4FFB0D00AD543B /* BannerGroupView.swift in Sources */,
 				7D1740E72B2C272000EE9181 /* SectionContentsViewModel.swift in Sources */,
 				7DC824232B20843600C7AC09 /* SSExpandableSwipeUpViewApp.swift in Sources */,
 				7D1740E32B2C254000EE9181 /* SectionHeaderView.swift in Sources */,
 				7DAA229F2B21B04700FE5DF6 /* ContentListView.swift in Sources */,
-				7DC824312B20857100C7AC09 /* BannerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

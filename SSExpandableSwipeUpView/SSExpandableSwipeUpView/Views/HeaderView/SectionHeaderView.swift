@@ -9,8 +9,7 @@ import SwiftUI
 
 struct SectionHeaderView: View {
     @Binding var sectionContent: SectionContent
-    @StateObject var viewModel: SectionContentsViewModel
-    var constants: CustomConstants
+    @EnvironmentObject var viewModel: SectionContentsViewModel
 
     var body: some View {
         HStack {
@@ -26,6 +25,30 @@ struct SectionHeaderView: View {
                         viewModel.toggleSectionExpansion(for: sectionContent)
                     }
                 }
+
+            // Collapse button
+            // Visible only when the group is expanded i.e isSectionExpanded is true
+            if sectionContent.isSectionExpanded {
+                Button(action: {
+                    withAnimation {
+                        viewModel.toggleSectionExpansion(for: sectionContent)
+                    }
+                }) {
+                    HStack {
+                        Image("dropDown")
+                            .frame(width: AppConstants.sectionTitleHeight - 30, height: AppConstants.sectionTitleHeight)
+                            .foregroundColor(Color("black"))
+                            .padding(5)
+                        Text("Show less")
+                            .font(.system(size: 14))
+                            .foregroundColor(Color("black"))
+                    }
+                }
+                .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
+                .background(Color("grayBackground").opacity(AppConstants.bannerOpacity))
+                .cornerRadius(.infinity)
+            }
+
             // Expand/Remove button
             // Sets using isSectionExpanded
             Button(action: {
@@ -40,11 +63,11 @@ struct SectionHeaderView: View {
                 }
             }) {
                 if !$viewModel.sectionContents.isEmpty {
-                    ExpandButtonView(sectionContent: $viewModel.sectionContents[viewModel.getIndexOfSection(for: sectionContent)])
+                    ExpandButtonView(sectionContent: viewModel.sectionContents[viewModel.getIndexOfSection(for: sectionContent)])
                 }
             }
         }
-        .frame(height: constants.sectionTitleHeight)
+        .frame(width: UIScreen.main.bounds.width - 20, height: AppConstants.sectionTitleHeight)
     }
 }
 
@@ -52,12 +75,11 @@ struct SectionHeaderView: View {
 // Sets button's image using isSectionExpanded
 // If number of banners is 1, no expansion needed
 struct ExpandButtonView: View {
-    @Binding var sectionContent: SectionContent
-    var constants = CustomConstants()
+    var sectionContent: SectionContent
 
     var body: some View {
-        Image(sectionContent.swipeViewContents.count > 1 ? (sectionContent.isSectionExpanded ? "close" : "dropDown") : "close")
-            .frame(width: constants.sectionTitleHeight, height: constants.sectionTitleHeight)
+        Image(sectionContent.isSectionExpanded ? "close" : "dropDown")
+            .frame(width: AppConstants.sectionTitleHeight, height: AppConstants.sectionTitleHeight)
             .foregroundColor(Color("white"))
             .padding(5)
     }
