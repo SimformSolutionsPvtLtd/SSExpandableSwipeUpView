@@ -14,6 +14,8 @@ struct BannerView: View {
     @Binding var activeBanner: SwipeViewContent?
     @State var isFullSwipe: Bool = false
     var onDelete: (SwipeViewContent) -> Void
+    var onOptions: (SwipeViewContent) -> Void
+
     let index: Int
 
     var body: some View {
@@ -68,7 +70,7 @@ struct BannerView: View {
             // Swipe Action View
             HStack {
                 createRectangleWithOverlay(text: "Options") {
-                    // add action for options button
+                    onOptions(swipeViewContent)
                 }
                 ZStack {
                     createRectangleWithOverlay(text: "Remove") {
@@ -144,11 +146,11 @@ struct BannerView: View {
 
 struct BannerView_Previews: PreviewProvider {
     @State private static var swipeViewContent: SwipeViewContent =
-    SwipeViewContent(id: 0, appImageName: "googlePay", title: "Section 1 - Notification 1", subtitle: "Content 1", createdDate: Date())
+    SwipeViewContent(appImageName: "googlePay", title: "Section 1 - Notification 1", subtitle: "Content 1", createdDate: Date())
     @State private static var isSectionExpanded = true
     static var previews: some View {
         VStack {
-            BannerView(swipeViewContent: $swipeViewContent, isSectionExpanded: $isSectionExpanded, activeBanner: .constant(nil), onDelete: {_ in }, index: 0)
+            BannerView(swipeViewContent: $swipeViewContent, isSectionExpanded: $isSectionExpanded, activeBanner: .constant(nil), onDelete: {_ in }, onOptions: {_ in }, index: 0)
                 .padding()
         }
     }

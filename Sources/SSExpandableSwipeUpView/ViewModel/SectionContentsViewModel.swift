@@ -37,7 +37,7 @@ public struct SwipeViewContent: Identifiable, Equatable {
             return lhs.id == rhs.id
         }
 
-    public let id: Int
+    public let id: UUID = UUID()
     public let appImageName: String
     public let title: String
     public let titleFontStyle: (font: String?, size: CGFloat?, color: Color?)
@@ -46,8 +46,7 @@ public struct SwipeViewContent: Identifiable, Equatable {
     public var createdDate: Date
 
     // Custom initializer
-    public init(id: Int, appImageName: String, title: String, titleFontStyle: (font: String?, size: CGFloat?, color: Color?) = (nil, nil, nil), subtitle: String, subtitleFontStyle: (font: String?, size: CGFloat?, color: Color?) = (nil, nil, nil), createdDate: Date) {
-        self.id = id
+    public init(appImageName: String, title: String, titleFontStyle: (font: String?, size: CGFloat?, color: Color?) = (nil, nil, nil), subtitle: String, subtitleFontStyle: (font: String?, size: CGFloat?, color: Color?) = (nil, nil, nil), createdDate: Date) {
         self.appImageName = appImageName
         self.title = title
         self.titleFontStyle = titleFontStyle

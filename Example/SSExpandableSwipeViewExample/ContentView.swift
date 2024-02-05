@@ -10,6 +10,7 @@ import SSExpandableSwipeUpView
 
 struct ContentView: View {
     var viewModel = SectionContentsViewModel()
+    var onOptionsTap: ((Int) -> Void)?
 
     init() {
         setupViewModel()
@@ -30,7 +31,9 @@ struct ContentView: View {
     }
 
     var body: some View {
-        SSExpandableSwipeUpView(viewModel: viewModel, backgroundWallpaper: Image("wallpaper"))
+        SSExpandableSwipeUpView(viewModel: viewModel, backgroundWallpaper: Image("wallpaper"), onOptions: {_ in
+            // swipe view content options click
+        })
     }
 }
 

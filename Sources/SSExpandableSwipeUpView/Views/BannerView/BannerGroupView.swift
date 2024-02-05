@@ -11,6 +11,7 @@ struct BannerGroupView: View {
     @Binding var sectionContent: SectionContent
     @EnvironmentObject var viewModel: SectionContentsViewModel
     @Binding var activeBanner: SwipeViewContent?
+    var onOptions: (SwipeViewContent) -> Void
 
     var body: some View {
         Group {
@@ -55,6 +56,8 @@ struct BannerGroupView: View {
                     withAnimation {
                         handleBannerDeletion(deletedSwipeViewContent: deletedSwipeViewContent)
                     }
+                }, onOptions: { swipeViewContent in
+                    onOptions(swipeViewContent)
                 }, index: index
             )
         }
@@ -74,7 +77,7 @@ struct BannerGroupView_Previews: PreviewProvider {
     @State static var viewModel = SectionContentsViewModel()
 
     static var previews: some View {
-        BannerGroupView(sectionContent: $viewModel.sectionContents.first!, activeBanner: .constant(nil))
+        BannerGroupView(sectionContent: $viewModel.sectionContents.first!, activeBanner: .constant(nil), onOptions: {_ in })
             .padding()
             .background(Color.black)
     }

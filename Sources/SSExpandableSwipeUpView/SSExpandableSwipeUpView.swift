@@ -11,11 +11,13 @@ public struct SSExpandableSwipeUpView: View {
     @State public var viewModel: SectionContentsViewModel
     @State var activeBanner: SwipeViewContent?
     @State public var backgroundWallpaper: Image?
+    var onOptions: (SwipeViewContent) -> Void
 
-    public init(viewModel: SectionContentsViewModel, activeBanner: SwipeViewContent? = nil, backgroundWallpaper: Image? = nil) {
+    public init(viewModel: SectionContentsViewModel, activeBanner: SwipeViewContent? = nil, backgroundWallpaper: Image? = nil, onOptions: @escaping (SwipeViewContent) -> Void) {
            self._viewModel = State(initialValue: viewModel)
            self._activeBanner = State(initialValue: activeBanner)
            self._backgroundWallpaper = State(initialValue: backgroundWallpaper)
+            self.onOptions = onOptions
        }
 
     public var body: some View {
@@ -29,7 +31,9 @@ public struct SSExpandableSwipeUpView: View {
                           .environmentObject(viewModel)
                       // Show content list if content is not empty
                       if !viewModel.sectionContents.isEmpty {
-                          ContentListView(activeBanner: $activeBanner)
+                          ContentListView(activeBanner: $activeBanner, onOptions: { swipeViewContent in
+                              onOptions(swipeViewContent)
+                          } )
                               .environmentObject(viewModel)
                       }
                   }
@@ -51,5 +55,5 @@ public struct SSExpandableSwipeUpView: View {
 }
 
 #Preview {
-    SSExpandableSwipeUpView(viewModel: SectionContentsViewModel())
+    SSExpandableSwipeUpView(viewModel: SectionContentsViewModel(), onOptions: {_ in})
 }

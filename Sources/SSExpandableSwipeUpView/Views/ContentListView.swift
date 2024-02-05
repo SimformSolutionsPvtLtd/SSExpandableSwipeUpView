@@ -11,6 +11,7 @@ import SwiftUI
 struct ContentListView: View {
     @EnvironmentObject var viewModel: SectionContentsViewModel
     @Binding var activeBanner: SwipeViewContent?
+    var onOptions: (SwipeViewContent) -> Void
 
     var body: some View {
         VStack {
@@ -20,7 +21,9 @@ struct ContentListView: View {
                     SectionHeaderView(sectionContent: $viewModel.sectionContents[viewModel.getIndexOfSection(for: sectionContent)])
                     // Banner list view
                     // Manages the expansion and collapse using index of content
-                    BannerGroupView(sectionContent: $viewModel.sectionContents[viewModel.getIndexOfSection(for: sectionContent)], activeBanner: $activeBanner)
+                    BannerGroupView(sectionContent: $viewModel.sectionContents[viewModel.getIndexOfSection(for: sectionContent)], activeBanner: $activeBanner){ swipeViewContent in
+                        onOptions(swipeViewContent)
+                    }
                         .animation(.easeIn, value: sectionContent.isSectionExpanded)
                 }
                 .onTapGesture {
@@ -38,7 +41,7 @@ struct ContentListView: View {
 
 struct ContentListView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentListView(activeBanner: .constant(nil))
+        ContentListView(activeBanner: .constant(nil), onOptions: {_ in})
             .background(Color("black", bundle: .module))
     }
 }
