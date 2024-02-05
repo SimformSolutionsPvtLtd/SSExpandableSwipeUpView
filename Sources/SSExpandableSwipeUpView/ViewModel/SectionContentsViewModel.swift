@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 enum AppConstants {
     static let collapsedGroupRowOffset: CGFloat = 10
@@ -18,29 +19,40 @@ enum AppConstants {
 public struct SectionContent: Identifiable {
     public let id: UUID = UUID()
     public let sectionTitle: String
+    public let titleFontStyle: (font: String?, size: CGFloat?, color: Color?)
     public var isSectionExpanded: Bool
     public var swipeViewContents: [SwipeViewContent]
 
     // Custom initializer
-    public init(sectionTitle: String, isSectionExpanded: Bool, swipeViewContents: [SwipeViewContent]) {
+    public init(sectionTitle: String, titleFontStyle: (font: String?, size: CGFloat?, color: Color?) = (nil, nil, nil), isSectionExpanded: Bool, swipeViewContents: [SwipeViewContent]) {
         self.sectionTitle = sectionTitle
+        self.titleFontStyle = titleFontStyle
         self.isSectionExpanded = isSectionExpanded
         self.swipeViewContents = swipeViewContents
     }
 }
 
 public struct SwipeViewContent: Identifiable, Equatable {
-    public let id: UUID = UUID()
+    public static func == (lhs: SwipeViewContent, rhs: SwipeViewContent) -> Bool {
+            return lhs.id == rhs.id
+        }
+
+    public let id: Int
     public let appImageName: String
     public let title: String
-    public var subtitle: String
+    public let titleFontStyle: (font: String?, size: CGFloat?, color: Color?)
+    public let subtitle: String
+    public let subtitleFontStyle: (font: String?, size: CGFloat?, color: Color?)
     public var createdDate: Date
 
     // Custom initializer
-    public init(appImageName: String, title: String, subtitle: String, createdDate: Date) {
+    public init(id: Int, appImageName: String, title: String, titleFontStyle: (font: String?, size: CGFloat?, color: Color?) = (nil, nil, nil), subtitle: String, subtitleFontStyle: (font: String?, size: CGFloat?, color: Color?) = (nil, nil, nil), createdDate: Date) {
+        self.id = id
         self.appImageName = appImageName
         self.title = title
+        self.titleFontStyle = titleFontStyle
         self.subtitle = subtitle
+        self.subtitleFontStyle = subtitleFontStyle
         self.createdDate = createdDate
     }
 }
@@ -51,8 +63,8 @@ public class SectionContentsViewModel: ObservableObject {
 
     @Published var sectionContents: [SectionContent] = []
 
-    public func addSection(title: String, isExpanded: Bool, swipeViewContents: [SwipeViewContent]) {
-        let newSection = SectionContent(sectionTitle: title, isSectionExpanded: isExpanded, swipeViewContents: swipeViewContents.sorted(by: {$0.createdDate > $1.createdDate}))
+    public func addSection(title: String, titleFontStyle: (font: String?, size: CGFloat?, color: Color?) = (nil, nil, nil), isExpanded: Bool, swipeViewContents: [SwipeViewContent]) {
+        let newSection = SectionContent(sectionTitle: title, titleFontStyle: titleFontStyle, isSectionExpanded: isExpanded, swipeViewContents: swipeViewContents.sorted(by: {$0.createdDate > $1.createdDate}))
           sectionContents.append(newSection)
       }
 

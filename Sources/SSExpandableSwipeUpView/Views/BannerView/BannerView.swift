@@ -42,12 +42,11 @@ struct BannerView: View {
                     VStack(alignment: .leading, spacing: 4) {
                         // Banner Title
                         Text(swipeViewContent.title)
-                            .font(.title3)
-                            .foregroundColor(Color("black", bundle: .module).opacity(AppConstants.bannerOpacity))
+                            .customFont(name: swipeViewContent.titleFontStyle.font, size: swipeViewContent.titleFontStyle.size ?? 20, color: swipeViewContent.titleFontStyle.color ?? Color("black", bundle: .module).opacity(AppConstants.bannerOpacity))
+                            .bold()
                         // Banner Description
                         Text(swipeViewContent.subtitle)
-                            .font(.body)
-                            .foregroundColor(Color("black", bundle: .module).opacity(AppConstants.bannerOpacity))
+                            .customFont(name: swipeViewContent.subtitleFontStyle.font, size: swipeViewContent.subtitleFontStyle.size ?? 16, color: swipeViewContent.subtitleFontStyle.color ?? Color("black", bundle: .module).opacity(AppConstants.bannerOpacity))
                             .multilineTextAlignment(.leading)
                     }
                 }
@@ -145,7 +144,7 @@ struct BannerView: View {
 
 struct BannerView_Previews: PreviewProvider {
     @State private static var swipeViewContent: SwipeViewContent =
-    SwipeViewContent(appImageName: "googlePay", title: "Section 1 - Notification 1", subtitle: "Content 1", createdDate: Date())
+    SwipeViewContent(id: 0, appImageName: "googlePay", title: "Section 1 - Notification 1", subtitle: "Content 1", createdDate: Date())
     @State private static var isSectionExpanded = true
     static var previews: some View {
         VStack {

@@ -16,9 +16,8 @@ struct SectionHeaderView: View {
             // Title of the section
             Text(sectionContent.sectionTitle)
                 .padding(5)
-                .foregroundColor(Color("white", bundle: .module))
+                .customFont(name: sectionContent.titleFontStyle.font, size: sectionContent.titleFontStyle.size ?? 30, color: sectionContent.titleFontStyle.color ?? Color("white", bundle: .module))
                 .fontWeight(.semibold)
-                .font(.title)
             Spacer()
                 .onTapGesture {
                     withAnimation {
