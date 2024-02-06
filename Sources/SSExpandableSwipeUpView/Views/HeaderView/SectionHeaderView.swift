@@ -77,7 +77,7 @@ struct ExpandButtonView: View {
     var sectionContent: SectionContent
 
     var body: some View {
-        Image(uiImage: UIImage(named: sectionContent.isSectionExpanded ? "close" : "dropDown", in: .main, with: nil)!)
+        Image(uiImage: UIImage(named: sectionContent.isSectionExpanded ? "close" : "dropDown", in: .module, with: nil)!)
             .frame(width: AppConstants.sectionTitleHeight, height: AppConstants.sectionTitleHeight)
             .foregroundColor(Color("white", bundle: .module))
             .padding(5)
