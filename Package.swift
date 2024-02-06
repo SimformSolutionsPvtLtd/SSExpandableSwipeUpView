@@ -18,6 +18,6 @@ let package = Package(
         .target(
             name: "SSExpandableSwipeUpView",
         path: "Sources",
-        resources: [.process("Resources/Media.xcassets")])
+        resources: [.process("SSExpandableSwipeUpView/Resources/Media.xcassets")])
     ]
 )

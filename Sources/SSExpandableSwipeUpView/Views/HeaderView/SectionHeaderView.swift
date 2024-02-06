@@ -16,7 +16,7 @@ struct SectionHeaderView: View {
             // Title of the section
             Text(sectionContent.sectionTitle)
                 .padding(5)
-                .customFont(name: sectionContent.titleFontStyle.font, size: sectionContent.titleFontStyle.size ?? 30, color: sectionContent.titleFontStyle.color ?? Color("white", bundle: .module))
+                .customFont(name: sectionContent.titleFontStyle.font, size: sectionContent.titleFontStyle.size ?? 30, color: sectionContent.titleFontStyle.color ?? Color("white", bundle: .main))
                 .fontWeight(.semibold)
             Spacer()
                 .onTapGesture {
@@ -34,17 +34,17 @@ struct SectionHeaderView: View {
                     }
                 }) {
                     HStack {
-                        Image(uiImage: UIImage(named: "dropDown", in: .module, with: nil)!)
+                        Image(uiImage: UIImage(named: "dropDown", in: .main, with: nil)!)
                             .frame(width: AppConstants.sectionTitleHeight - 30, height: AppConstants.sectionTitleHeight)
-                            .foregroundColor(Color("black", bundle: .module))
+                            .foregroundColor(Color("black", bundle: .main))
                             .padding(5)
                         Text("Show less")
                             .font(.system(size: 14))
-                            .foregroundColor(Color("black", bundle: .module))
+                            .foregroundColor(Color("black", bundle: .main))
                     }
                 }
                 .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
-                .background(Color("grayBackground", bundle: .module).opacity(AppConstants.bannerOpacity))
+                .background(Color("grayBackground", bundle: .main).opacity(AppConstants.bannerOpacity))
                 .cornerRadius(.infinity)
             }
 
@@ -77,9 +77,9 @@ struct ExpandButtonView: View {
     var sectionContent: SectionContent
 
     var body: some View {
-        Image(uiImage: UIImage(named: sectionContent.isSectionExpanded ? "close" : "dropDown", in: .module, with: nil)!)
+        Image(uiImage: UIImage(named: sectionContent.isSectionExpanded ? "close" : "dropDown", in: .main, with: nil)!)
             .frame(width: AppConstants.sectionTitleHeight, height: AppConstants.sectionTitleHeight)
-            .foregroundColor(Color("white", bundle: .module))
+            .foregroundColor(Color("white", bundle: .main))
             .padding(5)
     }
 }

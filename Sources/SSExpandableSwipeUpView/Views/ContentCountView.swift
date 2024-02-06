@@ -16,11 +16,11 @@ struct ContentCountView: View {
     var body: some View {
         VStack {
             Text("• \($viewModel.sectionContents.count) Notifications")
-                .foregroundColor(Color("black", bundle: .module))
+                .foregroundColor(Color("black", bundle: .main))
                 .fontWeight(.bold)
         }
         .padding(10)
-        .background(Color("grayBackground", bundle: .module).opacity(AppConstants.bannerOpacity))
+        .background(Color("grayBackground", bundle: .main).opacity(AppConstants.bannerOpacity))
         .cornerRadius(AppConstants.bannerCornerRadius)
     }
 }
