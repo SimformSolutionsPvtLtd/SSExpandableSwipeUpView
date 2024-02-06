@@ -42,6 +42,6 @@ struct ContentListView: View {
 struct ContentListView_Previews: PreviewProvider {
     static var previews: some View {
         ContentListView(activeBanner: .constant(nil), onOptions: {_ in})
-            .background(Color("black", bundle: .module))
+            .background(Colors.black)
     }
 }

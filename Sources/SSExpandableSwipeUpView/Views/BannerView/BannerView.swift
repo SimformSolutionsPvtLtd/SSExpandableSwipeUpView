@@ -28,7 +28,7 @@ struct BannerView: View {
                 // Banner Background View
                 // For color and blur effect
                 Rectangle()
-                    .foregroundStyle(Color("grayBackground", bundle: .module).opacity(AppConstants.bannerOpacity))
+                    .foregroundStyle(Colors.grayBackGround.opacity(AppConstants.bannerOpacity))
                     .blur(radius: 1, opaque: false)
                     .cornerRadius(AppConstants.bannerCornerRadius)
                     .shadow(color: .black.opacity(AppConstants.bannerOpacity), radius: 4)
@@ -45,11 +45,11 @@ struct BannerView: View {
                     VStack(alignment: .leading, spacing: 4) {
                         // Banner Title
                         Text(swipeViewContent.title)
-                            .customFont(name: swipeViewContent.titleFontStyle.font, size: swipeViewContent.titleFontStyle.size ?? 20, color: swipeViewContent.titleFontStyle.color ?? Color("black", bundle: .module).opacity(AppConstants.bannerOpacity))
+                            .customFont(name: swipeViewContent.titleFontStyle.font, size: swipeViewContent.titleFontStyle.size ?? 20, color: swipeViewContent.titleFontStyle.color ?? Colors.black.opacity(AppConstants.bannerOpacity))
                             .bold()
                         // Banner Description
                         Text(swipeViewContent.subtitle)
-                            .customFont(name: swipeViewContent.subtitleFontStyle.font, size: swipeViewContent.subtitleFontStyle.size ?? 16, color: swipeViewContent.subtitleFontStyle.color ?? Color("black", bundle: .module).opacity(AppConstants.bannerOpacity))
+                            .customFont(name: swipeViewContent.subtitleFontStyle.font, size: swipeViewContent.subtitleFontStyle.size ?? 16, color: swipeViewContent.subtitleFontStyle.color ?? Colors.black.opacity(AppConstants.bannerOpacity))
                             .multilineTextAlignment(.leading)
                     }
                 }
@@ -131,13 +131,13 @@ struct BannerView: View {
 
     func createRectangleWithOverlay(text: String, onTap: @escaping () -> Void) -> some View {
         return Rectangle()
-            .foregroundStyle(Color("grayBackground", bundle: .module).opacity(AppConstants.bannerOpacity))
+            .foregroundStyle(Colors.grayBackGround.opacity(AppConstants.bannerOpacity))
             .blur(radius: 1, opaque: false)
             .cornerRadius(AppConstants.bannerCornerRadius)
             .shadow(color: .black.opacity(AppConstants.bannerOpacity), radius: 4)
             .overlay(
                 Text(text)
-                    .foregroundStyle(Color("black", bundle: .module).opacity(AppConstants.bannerOpacity))
+                    .foregroundStyle(Colors.black.opacity(AppConstants.bannerOpacity))
                     .font(.body)
             )
             .onTapGesture(perform: onTap)

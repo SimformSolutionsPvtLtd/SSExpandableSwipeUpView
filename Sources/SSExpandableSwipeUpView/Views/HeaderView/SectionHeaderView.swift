@@ -16,7 +16,7 @@ struct SectionHeaderView: View {
             // Title of the section
             Text(sectionContent.sectionTitle)
                 .padding(5)
-                .customFont(name: sectionContent.titleFontStyle.font, size: sectionContent.titleFontStyle.size ?? 30, color: sectionContent.titleFontStyle.color ?? Color("white", bundle: .module))
+                .customFont(name: sectionContent.titleFontStyle.font, size: sectionContent.titleFontStyle.size ?? 30, color: sectionContent.titleFontStyle.color ?? Colors.white)
                 .fontWeight(.semibold)
             Spacer()
                 .onTapGesture {
@@ -37,15 +37,15 @@ struct SectionHeaderView: View {
                         Image(systemName: "chevron.down")
                             .frame(width: AppConstants.sectionTitleHeight - 30, height: AppConstants.sectionTitleHeight)
                             .symbolRenderingMode(.hierarchical)
-                            .foregroundStyle(Color("black", bundle: .module))
+                            .foregroundStyle(Colors.black)
                             .padding(5)
                         Text("Show less")
                             .font(.system(size: 14))
-                            .foregroundStyle(Color("black", bundle: .module))
+                            .foregroundStyle(Colors.black)
                     }
                 }
                 .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
-                .background(Color("grayBackground", bundle: .module).opacity(AppConstants.bannerOpacity))
+                .background(Colors.grayBackGround.opacity(AppConstants.bannerOpacity))
                 .cornerRadius(.infinity)
             }
 
@@ -80,7 +80,7 @@ struct ExpandButtonView: View {
     var body: some View {
         Image(systemName: sectionContent.isSectionExpanded ? "xmark.circle" : "chevron.down")
             .frame(width: AppConstants.sectionTitleHeight, height: AppConstants.sectionTitleHeight)
-            .foregroundStyle(Color("white", bundle: .module))
+            .foregroundStyle(Colors.white)
             .padding(5)
     }
 }
