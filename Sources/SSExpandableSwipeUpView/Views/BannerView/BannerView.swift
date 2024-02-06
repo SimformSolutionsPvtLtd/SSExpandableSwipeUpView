@@ -28,7 +28,7 @@ struct BannerView: View {
                 // Banner Background View
                 // For color and blur effect
                 Rectangle()
-                    .foregroundColor(Color("grayBackground", bundle: .main).opacity(AppConstants.bannerOpacity))
+                    .foregroundColor(Color("grayBackground", bundle: .module).opacity(AppConstants.bannerOpacity))
                     .blur(radius: 1, opaque: false)
                     .cornerRadius(AppConstants.bannerCornerRadius)
                     .shadow(color: .black.opacity(AppConstants.bannerOpacity), radius: 4)
@@ -38,17 +38,17 @@ struct BannerView: View {
                 // Resizes as per the size of content
                 HStack(spacing: 10) {
                     // Banner content image
-                    Image(uiImage: UIImage(named: swipeViewContent.appImageName, in: .main, with: nil)!)
+                    Image(uiImage: UIImage(named: swipeViewContent.appImageName, in: .module, with: nil)!)
                     .frame(width: 40, height: 40)
                     // Banner text content
                     VStack(alignment: .leading, spacing: 4) {
                         // Banner Title
                         Text(swipeViewContent.title)
-                            .customFont(name: swipeViewContent.titleFontStyle.font, size: swipeViewContent.titleFontStyle.size ?? 20, color: swipeViewContent.titleFontStyle.color ?? Color("black", bundle: .main).opacity(AppConstants.bannerOpacity))
+                            .customFont(name: swipeViewContent.titleFontStyle.font, size: swipeViewContent.titleFontStyle.size ?? 20, color: swipeViewContent.titleFontStyle.color ?? Color("black", bundle: .module).opacity(AppConstants.bannerOpacity))
                             .bold()
                         // Banner Description
                         Text(swipeViewContent.subtitle)
-                            .customFont(name: swipeViewContent.subtitleFontStyle.font, size: swipeViewContent.subtitleFontStyle.size ?? 16, color: swipeViewContent.subtitleFontStyle.color ?? Color("black", bundle: .main).opacity(AppConstants.bannerOpacity))
+                            .customFont(name: swipeViewContent.subtitleFontStyle.font, size: swipeViewContent.subtitleFontStyle.size ?? 16, color: swipeViewContent.subtitleFontStyle.color ?? Color("black", bundle: .module).opacity(AppConstants.bannerOpacity))
                             .multilineTextAlignment(.leading)
                     }
                 }
@@ -130,13 +130,13 @@ struct BannerView: View {
 
     func createRectangleWithOverlay(text: String, onTap: @escaping () -> Void) -> some View {
         return Rectangle()
-            .foregroundColor(Color("grayBackground", bundle: .main).opacity(AppConstants.bannerOpacity))
+            .foregroundColor(Color("grayBackground", bundle: .module).opacity(AppConstants.bannerOpacity))
             .blur(radius: 1, opaque: false)
             .cornerRadius(AppConstants.bannerCornerRadius)
             .shadow(color: .black.opacity(AppConstants.bannerOpacity), radius: 4)
             .overlay(
                 Text(text)
-                    .foregroundColor(Color("black", bundle: .main).opacity(AppConstants.bannerOpacity))
+                    .foregroundColor(Color("black", bundle: .module).opacity(AppConstants.bannerOpacity))
                     .font(.body)
             )
             .onTapGesture(perform: onTap)
