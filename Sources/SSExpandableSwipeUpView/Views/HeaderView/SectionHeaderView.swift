@@ -34,9 +34,10 @@ struct SectionHeaderView: View {
                     }
                 }) {
                     HStack {
-                        Image(uiImage: UIImage(named: "dropDown", in: .module, with: nil)!)
+                        Image(systemName: "chevron.down")
                             .frame(width: AppConstants.sectionTitleHeight - 30, height: AppConstants.sectionTitleHeight)
-                            .foregroundColor(Color("black", bundle: .module))
+                            .symbolRenderingMode(.hierarchical)
+                            .foregroundStyle(Color("black", bundle: .module))
                             .padding(5)
                         Text("Show less")
                             .font(.system(size: 14))
@@ -77,9 +78,9 @@ struct ExpandButtonView: View {
     var sectionContent: SectionContent
 
     var body: some View {
-        Image(uiImage: UIImage(named: sectionContent.isSectionExpanded ? "close" : "dropDown", in: .module, with: nil)!)
+        Image(systemName: sectionContent.isSectionExpanded ? "xmark.circle" : "chevron.down")
             .frame(width: AppConstants.sectionTitleHeight, height: AppConstants.sectionTitleHeight)
-            .foregroundColor(Color("white", bundle: .module))
+            .foregroundStyle(Color("white", bundle: .module))
             .padding(5)
     }
 }

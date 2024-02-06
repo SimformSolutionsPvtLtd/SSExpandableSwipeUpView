@@ -38,8 +38,9 @@ struct BannerView: View {
                 // Resizes as per the size of content
                 HStack(spacing: 10) {
                     // Banner content image
-                    Image(uiImage: UIImage(named: swipeViewContent.appImageName, in: .module, with: nil)!)
-                    .frame(width: 40, height: 40)
+                    Image(uiImage: (UIImage(named: swipeViewContent.appImageName) ?? UIImage(named: "no_image", in: .module, with: nil))!)
+                    .resizable()
+                    .frame(width: 60, height: 60)
                     // Banner text content
                     VStack(alignment: .leading, spacing: 4) {
                         // Banner Title
