@@ -41,33 +41,45 @@ SSExpandableSwipeUpView is a library for iOS developers, written in Swift. It re
 
 # Usage
 
----------
 ```swift
-    var viewModel = SectionContentsViewModel()
+var viewModel = SectionContentsViewModel()
     
-    init() {
-        setupViewModel()
-    }
+init() {
+   setupViewModel()
+ }
     
-    private func setupViewModel() {
-        let gPayContents = [
-            SwipeViewContent(appImageName: "googlePay", title: "Payment Received", subtitle: "Alex, You have received $10M in your account!", createdDate: Date()),
-            SwipeViewContent(appImageName: "googlePay", title: "Payment Received", subtitle: "Alex, You have received $5M in your account!", createdDate: Date())]
+private func setupViewModel() {
+let gPayContents = [
+      SwipeViewContent(appImageName: "googlePay", title: "Payment Received", subtitle: "Alex, You have received $10M in your account!", createdDate: Date()),
+      SwipeViewContent(appImageName: "googlePay", title: "Payment Received", subtitle: "Alex, You have received $5M in your account!", createdDate: Date())]
 
-        let teamsContents = [
-            SwipeViewContent(appImageName: "teams", title: "Gotham Steve", subtitle: "Hey, Alex", createdDate: Date()),
-            SwipeViewContent(appImageName: "teams", title: "Gotham Steve", subtitle: "What is the progress?", createdDate: Date()),
-            SwipeViewContent(appImageName: "teams", title: "Gotham Steve", subtitle: "Are you on timeline?", createdDate: Date())]
+let teamsContents = [
+      SwipeViewContent(appImageName: "teams", title: "Gotham Steve", subtitle: "Hey, Alex", createdDate: Date()),
+      SwipeViewContent(appImageName: "teams", title: "Gotham Steve", subtitle: "What is the progress?", createdDate: Date()),
+      SwipeViewContent(appImageName: "teams", title: "Gotham Steve", subtitle: "Are you on timeline?", createdDate: Date())]
 
-        viewModel.addSection(title: "Google Pay", isExpanded: true, swipeViewContents: gPayContents)
-        viewModel.addSection(title: "Teams", isExpanded: true, swipeViewContents: teamsContents)
-    }
-    
-    var body: some View {
-        SSExpandableSwipeUpView(viewModel: viewModel, backgroundWallpaper: Image("wallpaper"))
+      viewModel.addSection(title: "Google Pay", isExpanded: true, swipeViewContents: gPayContents)
+      viewModel.addSection(title: "Teams", isExpanded: true, swipeViewContents: teamsContents)
+}
+
+var body: some View {
+      SSExpandableSwipeUpView(viewModel: viewModel, backgroundWallpaper: Image("wallpaper"), onOptions: { banner in
+            /// swipe view banner content options click event
+       })
     }
 ```
+# More Customization
+You can customize fonts of banner Header, title and body also you can add image name ("appImageName") as per your data.
+```swift
+SwipeViewContent(appImageName: "googlePay", title: "Payment Received", titleFontStyle: (font: "YOUR_FONT_NAME", size: 20, color: .blue),
+subtitle: "Alex, You have received $10M in your account!", subtitleFontStyle: (font: "YOUR_FONT_NAME", size: 18, color: .yellow), createdDate: Date())
+```
 
+Section title customization
+```swift
+viewModel.addSection(title: "Google Pay", titleFontStyle: (font: "YOUR_FONT_NAME", size: 40, color: .red),
+isExpanded: true, swipeViewContents: gPayContents)
+```
 
 ## 🤝 How to Contribute
 
