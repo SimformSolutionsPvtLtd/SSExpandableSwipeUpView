@@ -16,7 +16,7 @@ struct FontModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(name.map { .custom($0, size: size) } ?? .system(size: size))
-            .foregroundColor(color)
+            .foregroundStyle(color)
     }
 }
 

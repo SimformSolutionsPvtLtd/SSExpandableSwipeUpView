@@ -41,7 +41,7 @@ struct SectionHeaderView: View {
                             .padding(5)
                         Text("Show less")
                             .font(.system(size: 14))
-                            .foregroundColor(Color("black", bundle: .module))
+                            .foregroundStyle(Color("black", bundle: .module))
                     }
                 }
                 .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))

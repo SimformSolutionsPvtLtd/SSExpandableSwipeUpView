@@ -28,7 +28,7 @@ struct BannerView: View {
                 // Banner Background View
                 // For color and blur effect
                 Rectangle()
-                    .foregroundColor(Color("grayBackground", bundle: .module).opacity(AppConstants.bannerOpacity))
+                    .foregroundStyle(Color("grayBackground", bundle: .module).opacity(AppConstants.bannerOpacity))
                     .blur(radius: 1, opaque: false)
                     .cornerRadius(AppConstants.bannerCornerRadius)
                     .shadow(color: .black.opacity(AppConstants.bannerOpacity), radius: 4)
@@ -131,13 +131,13 @@ struct BannerView: View {
 
     func createRectangleWithOverlay(text: String, onTap: @escaping () -> Void) -> some View {
         return Rectangle()
-            .foregroundColor(Color("grayBackground", bundle: .module).opacity(AppConstants.bannerOpacity))
+            .foregroundStyle(Color("grayBackground", bundle: .module).opacity(AppConstants.bannerOpacity))
             .blur(radius: 1, opaque: false)
             .cornerRadius(AppConstants.bannerCornerRadius)
             .shadow(color: .black.opacity(AppConstants.bannerOpacity), radius: 4)
             .overlay(
                 Text(text)
-                    .foregroundColor(Color("black", bundle: .module).opacity(AppConstants.bannerOpacity))
+                    .foregroundStyle(Color("black", bundle: .module).opacity(AppConstants.bannerOpacity))
                     .font(.body)
             )
             .onTapGesture(perform: onTap)

@@ -16,7 +16,7 @@ struct ContentCountView: View {
     var body: some View {
         VStack {
             Text("• \($viewModel.sectionContents.count) Notifications")
-                .foregroundColor(Color("black", bundle: .module))
+                .foregroundStyle(Color("black", bundle: .module))
                 .fontWeight(.bold)
         }
         .padding(10)
