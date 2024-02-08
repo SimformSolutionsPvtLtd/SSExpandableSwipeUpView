@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		431E09582B74FBAC00E02F8B /* SSExpandableSwipeUpView in Frameworks */ = {isa = PBXBuildFile; productRef = 431E09572B74FBAC00E02F8B /* SSExpandableSwipeUpView */; };
 		43F92E442B69254400E80BAA /* SSExpandableSwipeViewExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F92E432B69254400E80BAA /* SSExpandableSwipeViewExampleApp.swift */; };
 		43F92E462B69254400E80BAA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F92E452B69254400E80BAA /* ContentView.swift */; };
 		43F92E482B69254500E80BAA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43F92E472B69254500E80BAA /* Assets.xcassets */; };
 		43F92E4B2B69254500E80BAA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43F92E4A2B69254500E80BAA /* Preview Assets.xcassets */; };
-		43F92E532B6925B000E80BAA /* SSExpandableSwipeUpView in Frameworks */ = {isa = PBXBuildFile; productRef = 43F92E522B6925B000E80BAA /* SSExpandableSwipeUpView */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43F92E532B6925B000E80BAA /* SSExpandableSwipeUpView in Frameworks */,
+				431E09582B74FBAC00E02F8B /* SSExpandableSwipeUpView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,7 +86,7 @@
 			);
 			name = SSExpandableSwipeViewExample;
 			packageProductDependencies = (
-				43F92E522B6925B000E80BAA /* SSExpandableSwipeUpView */,
+				431E09572B74FBAC00E02F8B /* SSExpandableSwipeUpView */,
 			);
 			productName = SSExpandableSwipeViewExample;
 			productReference = 43F92E402B69254400E80BAA /* SSExpandableSwipeViewExample.app */;
@@ -117,7 +117,7 @@
 			);
 			mainGroup = 43F92E372B69254400E80BAA;
 			packageReferences = (
-				43F92E512B6925B000E80BAA /* XCRemoteSwiftPackageReference "SSExpandableSwipeUpView" */,
+				431E09562B74FBAC00E02F8B /* XCRemoteSwiftPackageReference "SSExpandableSwipeUpView" */,
 			);
 			productRefGroup = 43F92E412B69254400E80BAA /* Products */;
 			projectDirPath = "";
@@ -354,20 +354,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		43F92E512B6925B000E80BAA /* XCRemoteSwiftPackageReference "SSExpandableSwipeUpView" */ = {
+		431E09562B74FBAC00E02F8B /* XCRemoteSwiftPackageReference "SSExpandableSwipeUpView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SimformSolutionsPvtLtd/SSExpandableSwipeUpView.git";
 			requirement = {
-				branch = "feature/SPM-Creation";
+				branch = master;
 				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		43F92E522B6925B000E80BAA /* SSExpandableSwipeUpView */ = {
+		431E09572B74FBAC00E02F8B /* SSExpandableSwipeUpView */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 43F92E512B6925B000E80BAA /* XCRemoteSwiftPackageReference "SSExpandableSwipeUpView" */;
+			package = 431E09562B74FBAC00E02F8B /* XCRemoteSwiftPackageReference "SSExpandableSwipeUpView" */;
 			productName = SSExpandableSwipeUpView;
 		};
 /* End XCSwiftPackageProductDependency section */
