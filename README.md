@@ -3,7 +3,7 @@
 
 # SSExpandableSwipeUpView
 
-SSExpandableSwipeUpView is a library for iOS developers, written in Swift. It resembles iPhone notification tray, also known as the Notification Center, is a centralized hub designed to provide users with a quick and organized overview of their incoming alerts, messages, and updates. Accessible by swiping down from the top edge of the screen, the notification tray displays a chronological list of notifications from various apps and system events. The library offers a wide range of customizable options. SSExpandableSwipeUpView is simple to integrate into your existing projects and offers excellent performance, making it an essential tool for any iOS developer contributing to a seamless and personalized user experience.
+SSExpandableSwipeUpView is a powerful Swift library developed using the SwiftUI framework for iOS applications. It resembles iPhone notification tray, also known as the Notification Center, is a centralized hub designed to provide users with a quick and organized overview of their incoming alerts, messages, and updates. Accessible by swiping down from the top edge of the screen, the notification tray displays a chronological list of notifications from various apps and system events. The library offers a wide range of customizable options. SSExpandableSwipeUpView is simple to integrate into your existing projects and offers excellent performance, making it an essential tool for any iOS developer contributing to a seamless and personalized user experience.
  
 # Features!
   - Group stack view like notification control center
